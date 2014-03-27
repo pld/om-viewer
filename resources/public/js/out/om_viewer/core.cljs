@@ -14,9 +14,9 @@
 
 (def ENTER_KEY 13)
 
-(def PROTOCOL "http")
+(def PROTOCOL "https")
 
-(def HOST "localhost:8000")
+(def HOST "stage.ona.io")
 
 (def ^:private meths
   {:get "GET"
@@ -131,7 +131,7 @@
                                              "Sign in")))
                (dom/div #js {:id "classes"}
                         (let [datasets (:datasets app)
-                              account (:account app)]
+                              {:keys [username password]} (:account app)]
                           (when (> (count datasets) 0)
                             (dom/h2 nil "Datasets")
                             (apply dom/ul nil
@@ -140,7 +140,7 @@
                                       (let [id (:formid dataset)]
                                         (om/build editable dataset
                                                   {:opts {:edit-key :description
-                                                          :on-edit #(on-edit account id %)}})))
+                                                          :on-edit #(on-edit {:username username :password password} id %)}})))
                                     (:datasets app))))))))))
 
 (om/root dataset-view app-state
