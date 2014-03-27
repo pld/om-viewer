@@ -17,12 +17,12 @@
 
   :plugins [[lein-cljsbuild "1.0.2"]]
 
-  :source-paths ["src/clj" "src/cljs"]
+  :source-paths ["src/cljs"]
   :resource-paths ["resources"]
 
   :cljsbuild {
     :builds [{:id "dev"
-              :source-paths ["src/clj" "src/cljs"]
+              :source-paths ["src/cljs"]
               :compiler {
                 :output-to "resources/public/js/main.js"
                 :output-dir "resources/public/js/out"
