@@ -14,9 +14,9 @@
 
 (def ENTER_KEY 13)
 
-(def PROTOCOL "http")
+(def PROTOCOL "https")
 
-(def HOST "localhost:8000")
+(def HOST "stage.ona.io")
 
 (def ^:private meths
   {:get "GET"
