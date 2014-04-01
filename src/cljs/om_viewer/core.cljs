@@ -109,9 +109,9 @@
   (let [username (-> (om/get-node owner "login-username") .-value)
         password (-> (om/get-node owner "login-password") .-value)
         account {:username username :password password}]
-     (when (and username password)
-       (om/update! app [:account] account))
-     (load-datasets app account)))
+    (when (and username password)
+      (om/update! app [:account] account))
+    (load-datasets app account)))
 
 (defn dataset-view [app owner]
   (reify
@@ -124,12 +124,12 @@
                (dom/div nil
                         (dom/h2 nil "Login")
                         (dom/form #js {:action "#"}
-                                 (dom/input #js {:type "text" :ref "login-username"})
-                                 (dom/input #js {:type "text" :ref "login-password"})
-                                 (dom/button #js
-                                             {:onClick #(login app owner)}
-                                             "Sign in")))
-               (dom/div #js {:id "classes"}
+                                  (dom/input #js {:type "text" :ref "login-username"})
+                                  (dom/input #js {:type "password" :ref "login-password"})
+                                  (dom/button #js
+                                              {:onClick #(login app owner)}
+                                              "Sign in")))
+               (dom/div #js {:id "datasets"}
                         (let [datasets (:datasets app)
                               {:keys [username password]} (:account app)]
                           (when (> (count datasets) 0)
@@ -144,4 +144,4 @@
                                     (:datasets app))))))))))
 
 (om/root dataset-view app-state
-         {:target (gdom/getElement "classes")})
+         {:target (gdom/getElement "datasets")})
